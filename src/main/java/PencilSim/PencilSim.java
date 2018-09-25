@@ -52,8 +52,10 @@ public class PencilSim {
     }
     
     public void sharpen(){
-        pointHealth = MAX_POINT_HEALTH;
-        pencilLength = pencilLength - 1;
+        if(pencilLength > 0){
+            pointHealth = MAX_POINT_HEALTH;
+            pencilLength = pencilLength - 1;
+        }
     }
     
     public String getPaperText(){

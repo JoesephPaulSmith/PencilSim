@@ -100,4 +100,24 @@ public class PencilSimTest {
         assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
         assertEquals(Integer.valueOf(19), pencilsimulator.getPencilLength());     
     }
+    
+    @Test
+    public void pencilsOfShortLengthWriteVeryLittle(){
+        pencilsimulator = new PencilSim("Short pencils write", 10, 1);
+        pencilsimulator.write(" very few words");
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
+        assertEquals("Short pencils write very few wor  ", pencilsimulator.getPaperText());
+        pencilsimulator.sharpen();
+        assertEquals(Integer.valueOf(10), pencilsimulator.getPointHealth());
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPencilLength());
+        pencilsimulator.write("of great importance");
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
+        assertEquals("Short pencils write very few wor  of great imp       ", pencilsimulator.getPaperText());
+        pencilsimulator.sharpen();
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPencilLength());
+        pencilsimulator.write("I say");
+        assertEquals("Short pencils write very few wor  of great imp            ", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
+    }
 }
