@@ -59,4 +59,15 @@ public class PencilSimTest {
         assertEquals("This is a test piece of test paperS", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(48), pencilsimulator.getPointHealth());
     }
+    
+    @Test
+    public void pencilsOfIllHealthWriteSpacesEventually(){
+        pencilsimulator = new PencilSim("Short pencil points", 8);
+        pencilsimulator.write(" write");
+        assertEquals("Short pencil points write", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(3), pencilsimulator.getPointHealth());
+        pencilsimulator.write(" little");
+        assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
+        assertEquals("Short pencil points write lit   ", pencilsimulator.getPaperText());
+    }
 }

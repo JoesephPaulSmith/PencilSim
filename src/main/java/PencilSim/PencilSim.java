@@ -35,9 +35,15 @@ public class PencilSim {
     }
     
     public void write(String textToWrite){
-        for(int i = 0; i < textToWrite.length(); i++){
-            pointHealth = pointHealth - charCost(textToWrite.charAt(i));     
-            paperText = paperText + textToWrite.charAt(i);
+        for(int i = 0; i < textToWrite.length(); i++){            
+            pointHealth = pointHealth - charCost(textToWrite.charAt(i));
+            if(pointHealth < 0){
+                pointHealth = 0;
+                paperText = paperText + " ";
+            }
+            else{
+                paperText = paperText + textToWrite.charAt(i);
+            }
         }
     }
     
