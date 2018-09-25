@@ -20,7 +20,7 @@ public class PencilSimTest {
     
     @Before
     public void setUp() {
-        pencilsimulator = new PencilSim("This is a test piece of test paper", 50, 20);
+        pencilsimulator = new PencilSim("This is a test piece of test paper", 50, 20, 50);
     }
     
     @Test
@@ -62,7 +62,7 @@ public class PencilSimTest {
     
     @Test
     public void pencilsOfIllHealthWriteSpacesEventually(){
-        pencilsimulator = new PencilSim("Short pencil points", 8, 20);
+        pencilsimulator = new PencilSim("Short pencil points", 8, 20, 50);
         pencilsimulator.write(" write");
         assertEquals("Short pencil points write", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(3), pencilsimulator.getPointHealth());
@@ -73,7 +73,7 @@ public class PencilSimTest {
     
     @Test
     public void writerWantsToSharpenPencilToKeepWritingAfterPencilDulls(){
-        pencilsimulator = new PencilSim("Short pencil points", 8, 20);
+        pencilsimulator = new PencilSim("Short pencil points", 8, 20, 50);
         pencilsimulator.write(" write");
         assertEquals("Short pencil points write", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(3), pencilsimulator.getPointHealth());
@@ -103,7 +103,7 @@ public class PencilSimTest {
     
     @Test
     public void pencilsOfShortLengthWriteVeryLittle(){
-        pencilsimulator = new PencilSim("Short pencils write", 10, 1);
+        pencilsimulator = new PencilSim("Short pencils write", 10, 1, 50);
         pencilsimulator.write(" very few words");
         assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
         assertEquals("Short pencils write very few wor  ", pencilsimulator.getPaperText());
@@ -127,5 +127,10 @@ public class PencilSimTest {
         assertEquals("This is a test piece of      paper", pencilsimulator.getPaperText());
         pencilsimulator.erase("test");
         assertEquals("This is a      piece of      paper", pencilsimulator.getPaperText());        
+    }
+    
+    @Test
+    public void erasersHaveALifeOfTheirOwn(){
+        assertEquals(Integer.valueOf(50), pencilsimulator.getEraserHealth());
     }
 }

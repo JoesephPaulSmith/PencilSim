@@ -15,12 +15,14 @@ public class PencilSim {
     private Integer pointHealth;
     private Integer MAX_POINT_HEALTH;
     private Integer pencilLength;
+    private Integer eraserHealth;
     
-    public PencilSim(String initialText, Integer initPointHealth, Integer initPencilLength){
+    public PencilSim(String initialText, Integer initPointHealth, Integer initPencilLength, Integer initEraserHealth){
         paperText = initialText;
         pointHealth = initPointHealth;
         MAX_POINT_HEALTH = initPointHealth;
         pencilLength = initPencilLength;
+        eraserHealth = initEraserHealth;
     }
     
     private Integer charCost(char ch){
@@ -82,6 +84,10 @@ public class PencilSim {
     
     public Integer getPencilLength(){
         return(pencilLength);
+    }
+    
+    public Integer getEraserHealth(){
+        return(eraserHealth);
     }
     
 }
