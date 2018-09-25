@@ -101,10 +101,21 @@ public class PencilSim {
         }
         String currentText = paperText;
         Integer insertStart = erasedWordLocs.remove();
+        Integer insertEnd = insertStart + textToInsert.length();
+        String textToOverwrite = currentText.substring(insertStart, insertEnd);
+        String replacementText = "";
+        for(int i = 0; i < textToOverwrite.length(); i++){
+            if(!Character.isWhitespace(textToOverwrite.charAt(i))){
+                replacementText = replacementText + "@";
+            }
+            else{
+                replacementText = replacementText + textToInsert.charAt(i);
+            }
+        }
         paperText = currentText.substring(0, insertStart);
-        write(textToInsert);
+        write(replacementText);
         paperText = paperText + currentText.substring(
-                insertStart+textToInsert.length(), 
+                insertEnd, 
                 currentText.length()
         );
     }

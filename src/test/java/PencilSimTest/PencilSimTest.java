@@ -201,5 +201,15 @@ public class PencilSimTest {
         assertEquals(pencilsimulator.getPaperText(), "An onion a day keeps the spider away");
     }
     
+    @Test
+    public void insertingTextLargerThanGapMakesCollisionsRepdByAtSymbols(){
+        pencilsimulator = new PencilSim("An apple a day keeps the doctor away", 50, 20, 50);
+        pencilsimulator.erase("apple");
+        assertEquals(pencilsimulator.getPaperText(), "An       a day keeps the doctor away");
+        pencilsimulator.insert("artichoke");
+        assertEquals(pencilsimulator.getPaperText(), "An artich@k@ay keeps the doctor away");
+    }
+    
+    
     
 }
