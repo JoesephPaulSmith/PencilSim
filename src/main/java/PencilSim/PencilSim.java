@@ -17,6 +17,10 @@ public class PencilSim {
         paperText = initialText;
     }
     
+    public void write(String textToWrite){
+        paperText = paperText + textToWrite;
+    }
+    
     public String getPaperText(){
         return(paperText);
     }

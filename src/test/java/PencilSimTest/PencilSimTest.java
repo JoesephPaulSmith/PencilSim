@@ -19,5 +19,12 @@ public class PencilSimTest {
     public void whenSimulatorStartedInitialPaperTextIsAsSpecified(){
         PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper");
         assertEquals("This is a test piece of test paper", pencilsimulator.getPaperText());
-    }    
+    }
+
+    @Test
+    public void writerWantsToUsePencilToWriteAndBetterRememberThoughts(){
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper");
+        pencilsimulator.write(" for testing purposes");
+        assertEquals("This is a test piece of test paper for testing purposes", pencilsimulator.getPaperText());
+    }
 }
