@@ -38,6 +38,7 @@ public class PencilSimTest {
     public void writingSpacesAndNewlinesCostsNothing(){
         PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
         pencilsimulator.write(" \n \n \n");
+        assertEquals("This is a test piece of test paper \n \n \n", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
     }
     
@@ -45,6 +46,15 @@ public class PencilSimTest {
     public void writingALowerCaseLetterCostsOne(){
         PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
         pencilsimulator.write("s");
+        assertEquals("This is a test piece of test papers", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(49), pencilsimulator.getPointHealth());
+    }
+    
+    @Test
+    public void writingAnUpperCaseLetterCostsTwo(){
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
+        pencilsimulator.write("S");
+        assertEquals("This is a test piece of test paperS", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(48), pencilsimulator.getPointHealth());
     }
 }

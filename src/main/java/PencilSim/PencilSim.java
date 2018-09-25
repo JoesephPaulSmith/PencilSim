@@ -22,8 +22,13 @@ public class PencilSim {
     public void write(String textToWrite){
         for(int i = 0; i < textToWrite.length(); i++){
             if(!Character.isWhitespace(textToWrite.charAt(i))){
-                pointHealth = pointHealth - 1;
-            }
+                if(Character.isUpperCase(textToWrite.charAt(i))){
+                    pointHealth = pointHealth - 2;
+                }
+                else{
+                    pointHealth = pointHealth - 1;
+                }
+            }            
             paperText = paperText + textToWrite.charAt(i);
         }
     }
