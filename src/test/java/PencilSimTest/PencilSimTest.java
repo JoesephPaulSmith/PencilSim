@@ -151,4 +151,17 @@ public class PencilSimTest {
         assertEquals("This is                 test paper", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(38), pencilsimulator.getEraserHealth());
     }
+    
+    @Test
+    public void deadErasersDontErase(){
+        pencilsimulator = new PencilSim("This is a test piece\nof test paper", 50, 20, 3);
+        pencilsimulator.erase("a test");
+        assertEquals("This is a t    piece\nof test paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(0), pencilsimulator.getEraserHealth());
+        pencilsimulator = new PencilSim("This is a test piece\nof test paper", 50, 20, 3);
+        pencilsimulator.erase("piece\nof");
+        assertEquals("This is a test piec     test paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(0), pencilsimulator.getEraserHealth());
+    }
+    
 }

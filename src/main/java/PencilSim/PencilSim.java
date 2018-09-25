@@ -62,12 +62,21 @@ public class PencilSim {
     
     public void erase(String textToErase){
         Integer targetPos = paperText.lastIndexOf(textToErase);
+        Integer eraserCost = calculateErasureCost(textToErase);
+        Integer eraserBalance = eraserHealth - eraserCost;
         String tempPaperText = paperText.substring(0, targetPos);
         for(int i = 0; i < textToErase.length(); i++){
-            tempPaperText = tempPaperText + " ";
-            if(!Character.isWhitespace(textToErase.charAt(i))){
-                eraserHealth = eraserHealth - 1;
+            if(eraserBalance < 0 && !Character.isWhitespace(textToErase.charAt(i))){
+                tempPaperText = tempPaperText + textToErase.charAt(i);
+                eraserBalance = eraserBalance + 1;
             }
+            else if(Character.isWhitespace(textToErase.charAt(i))){
+                tempPaperText = tempPaperText + " ";
+            }
+            else{
+                tempPaperText = tempPaperText + " ";
+                eraserHealth = eraserHealth - 1;
+            }            
         }
         tempPaperText = tempPaperText 
             + paperText.substring(
@@ -75,6 +84,19 @@ public class PencilSim {
                 paperText.length()
         );
         paperText = tempPaperText;                
+    }
+    
+    private Integer calculateErasureCost(String str){
+        Integer retCost = 0;
+        for(int i = 0; i < str.length(); i++){
+            if(Character.isWhitespace(str.charAt(i))){
+                retCost = retCost + 0;
+            }        
+            else{
+                retCost = retCost + 1;
+            }
+        }
+        return(retCost);
     }
     
     public String getPaperText(){
