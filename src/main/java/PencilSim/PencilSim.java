@@ -95,6 +95,20 @@ public class PencilSim {
         paperText = tempPaperText;                
     }
     
+    public void insert(String textToInsert){
+        if(editingQueueEmpty()){
+            return;
+        }
+        String currentText = paperText;
+        Integer insertStart = erasedWordLocs.remove();
+        paperText = currentText.substring(0, insertStart);
+        write(textToInsert);
+        paperText = paperText + currentText.substring(
+                insertStart+textToInsert.length(), 
+                currentText.length()
+        );
+    }
+    
     private Integer calculateErasureCost(String str){
         Integer retCost = 0;
         for(int i = 0; i < str.length(); i++){
@@ -126,6 +140,10 @@ public class PencilSim {
     
     public Boolean verifyErasedWordPostion(Integer e){
         return(erasedWordLocs.contains(e));
+    }
+    
+    public Boolean editingQueueEmpty(){
+        return(erasedWordLocs.isEmpty());
     }
     
 }

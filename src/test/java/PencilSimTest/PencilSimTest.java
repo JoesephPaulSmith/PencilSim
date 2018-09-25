@@ -182,4 +182,24 @@ public class PencilSimTest {
         assertEquals(Integer.valueOf(50), pencilsimulator.getEraserHealth());
     }
     
+    @Test
+    public void writerWantsToEditTextToChangeWritingWithoutStartingOver(){
+        pencilsimulator = new PencilSim("An apple a day keeps the doctor away", 50, 20, 50);
+        pencilsimulator.erase("apple");
+        assertEquals(pencilsimulator.getPaperText(), "An       a day keeps the doctor away");
+        pencilsimulator.erase("doctor");
+        assertEquals(pencilsimulator.getPaperText(), "An       a day keeps the        away");
+        pencilsimulator.insert("onion");
+        assertEquals(pencilsimulator.getPointHealth(), Integer.valueOf(45));
+        assertEquals(pencilsimulator.getPaperText(), "An onion a day keeps the        away");
+        assertEquals(pencilsimulator.editingQueueEmpty(), false);
+        pencilsimulator.insert("spider");
+        assertEquals(pencilsimulator.getPointHealth(), Integer.valueOf(39));
+        assertEquals(pencilsimulator.getPaperText(), "An onion a day keeps the spider away");
+        assertEquals(pencilsimulator.editingQueueEmpty(), true);
+        pencilsimulator.insert(" indeed");
+        assertEquals(pencilsimulator.getPaperText(), "An onion a day keeps the spider away");
+    }
+    
+    
 }
