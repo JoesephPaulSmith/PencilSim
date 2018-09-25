@@ -71,8 +71,7 @@ public class PencilSim {
             return;
         }
         erasedWordLocs.add(targetPos);
-        Integer eraserCost = calculateErasureCost(textToErase);
-        Integer eraserBalance = eraserHealth - eraserCost;
+        Integer eraserBalance = eraserHealth - calculateErasureCost(textToErase);
         String tempPaperText = paperText.substring(0, targetPos);
         for(int i = 0; i < textToErase.length(); i++){
             if(eraserBalance < 0 && !Character.isWhitespace(textToErase.charAt(i))){
@@ -101,8 +100,8 @@ public class PencilSim {
         }
         String currentText = paperText;
         Integer insertStart = erasedWordLocs.remove();
-        Integer insertEnd = insertStart + textToInsert.length();
-        String textToOverwrite = currentText.substring(insertStart, insertEnd);
+        String textToOverwrite = currentText.substring(insertStart,
+                insertStart + textToInsert.length());
         String replacementText = "";
         Integer insertCost = 0;
         for(int i = 0; i < textToOverwrite.length(); i++){
@@ -115,7 +114,6 @@ public class PencilSim {
                 insertCost = insertCost + charCost(textToInsert.charAt(i));
             }
         }
-        System.out.println(replacementText);
         paperText = currentText.substring(0, insertStart);
         write(replacementText);
         paperText = paperText + currentText.substring(
