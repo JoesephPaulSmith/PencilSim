@@ -58,6 +58,20 @@ public class PencilSim {
         }
     }
     
+    public void erase(String textToErase){
+        Integer targetPos = paperText.lastIndexOf(textToErase);
+        String tempPaperText = paperText.substring(0, targetPos);
+        for(int i = 0; i < textToErase.length(); i++){
+            tempPaperText = tempPaperText + " ";
+        }
+        tempPaperText = tempPaperText 
+            + paperText.substring(
+                targetPos+textToErase.length(),
+                paperText.length()
+        );
+        paperText = tempPaperText;                
+    }
+    
     public String getPaperText(){
         return(paperText);
     }

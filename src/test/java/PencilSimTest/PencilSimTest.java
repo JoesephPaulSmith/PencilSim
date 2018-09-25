@@ -120,4 +120,12 @@ public class PencilSimTest {
         assertEquals("Short pencils write very few wor  of great imp            ", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(0), pencilsimulator.getPointHealth());
     }
+    
+    @Test
+    public void writerWantsToEraseLastInstancesOfWordsToRemoveMistakes(){
+        pencilsimulator.erase("test");
+        assertEquals("This is a test piece of      paper", pencilsimulator.getPaperText());
+        pencilsimulator.erase("test");
+        assertEquals("This is a      piece of      paper", pencilsimulator.getPaperText());        
+    }
 }
