@@ -61,6 +61,39 @@ public class PencilSimTest {
     }
     
     @Test
+    public void letsAssumeOtherCharactersCostOne(){
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("Total is 5.56");
+        assertEquals("Total is 5.56", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(18), pencilsimulator.getPointHealth());
+        
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("Phone # is 734-972-8096");
+        assertEquals("Phone # is 734-972-8096", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(9), pencilsimulator.getPointHealth());
+        
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("Smith Heating & Cooling");
+        assertEquals("Smith Heating & Cooling", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(7), pencilsimulator.getPointHealth());
+        
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("2 + 2 = 4");
+        assertEquals("2 + 2 = 4", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(25), pencilsimulator.getPointHealth());
+        
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("I am 'working'");
+        assertEquals("I am 'working'", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(17), pencilsimulator.getPointHealth());
+        
+        pencilsimulator = new PencilSim("", 30, 20, 50);
+        pencilsimulator.write("See: item 1, item 2, and item 3");
+        assertEquals("See: item 1, item 2, and item 3", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(5), pencilsimulator.getPointHealth());
+    }
+    
+    @Test
     public void pencilsOfIllHealthWriteSpacesEventually(){
         pencilsimulator = new PencilSim("Short pencil points", 8, 20, 50);
         pencilsimulator.write(" write");
