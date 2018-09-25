@@ -140,4 +140,15 @@ public class PencilSimTest {
         assertEquals("This is a test piece of      paper", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(46), pencilsimulator.getEraserHealth());
     }
+    
+    @Test
+    public void erasersLoseNoPointsPerSpaceErased(){
+        pencilsimulator = new PencilSim("This is a test piece\nof test paper", 50, 20, 50);
+        pencilsimulator.erase("a test");
+        assertEquals("This is        piece\nof test paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(45), pencilsimulator.getEraserHealth());
+        pencilsimulator.erase("piece\nof");
+        assertEquals("This is                 test paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(38), pencilsimulator.getEraserHealth());
+    }
 }
