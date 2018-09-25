@@ -13,10 +13,12 @@ public class PencilSim {
     
     private String paperText;
     private Integer pointHealth;
+    private Integer MAX_POINT_HEALTH;
     
     public PencilSim(String initialText, Integer initPointHealth){
         paperText = initialText;
         pointHealth = initPointHealth;
+        MAX_POINT_HEALTH = initPointHealth;
     }
     
     private Integer charCost(char ch){
@@ -45,6 +47,10 @@ public class PencilSim {
                 paperText = paperText + textToWrite.charAt(i);
             }
         }
+    }
+    
+    public void sharpen(){
+        pointHealth = MAX_POINT_HEALTH;
     }
     
     public String getPaperText(){
