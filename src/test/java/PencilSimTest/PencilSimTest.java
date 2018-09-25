@@ -210,6 +210,20 @@ public class PencilSimTest {
         assertEquals(pencilsimulator.getPaperText(), "An artich@k@ay keeps the doctor away");
     }
     
+    @Test
+    public void pencilDiesWhileInsertingTextLargerThanGapMayNotMakeCollisions(){
+        pencilsimulator = new PencilSim("An apple a day keeps the doctor away", 7, 20, 50);
+        pencilsimulator.erase("apple");
+        assertEquals(pencilsimulator.getPaperText(), "An       a day keeps the doctor away");
+        pencilsimulator.insert("artichoke");
+        assertEquals(pencilsimulator.getPaperText(), "An artich@ day keeps the doctor away");
+        pencilsimulator = new PencilSim("MoneyHoney", 8, 20, 50);
+        pencilsimulator.erase("Money");
+        assertEquals(pencilsimulator.getPaperText(), "     Honey");
+        pencilsimulator.insert("artichokes");
+        assertEquals(pencilsimulator.getPaperText(), "artic@@@ey");       
+    }
+    
     
     
 }

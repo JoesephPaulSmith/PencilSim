@@ -104,18 +104,22 @@ public class PencilSim {
         Integer insertEnd = insertStart + textToInsert.length();
         String textToOverwrite = currentText.substring(insertStart, insertEnd);
         String replacementText = "";
+        Integer insertCost = 0;
         for(int i = 0; i < textToOverwrite.length(); i++){
-            if(!Character.isWhitespace(textToOverwrite.charAt(i))){
+            if(!Character.isWhitespace(textToOverwrite.charAt(i)) && insertCost < pointHealth){
                 replacementText = replacementText + "@";
+                insertCost = insertCost + charCost(textToInsert.charAt(i));
             }
-            else{
+            else if(insertCost < pointHealth){
                 replacementText = replacementText + textToInsert.charAt(i);
+                insertCost = insertCost + charCost(textToInsert.charAt(i));
             }
         }
+        System.out.println(replacementText);
         paperText = currentText.substring(0, insertStart);
         write(replacementText);
         paperText = paperText + currentText.substring(
-                insertEnd, 
+                insertStart + replacementText.length(), 
                 currentText.length()
         );
     }
