@@ -20,7 +20,7 @@ public class PencilSimTest {
     
     @Before
     public void setUp() {
-        pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
+        pencilsimulator = new PencilSim("This is a test piece of test paper", 50, 20);
     }
     
     @Test
@@ -62,7 +62,7 @@ public class PencilSimTest {
     
     @Test
     public void pencilsOfIllHealthWriteSpacesEventually(){
-        pencilsimulator = new PencilSim("Short pencil points", 8);
+        pencilsimulator = new PencilSim("Short pencil points", 8, 20);
         pencilsimulator.write(" write");
         assertEquals("Short pencil points write", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(3), pencilsimulator.getPointHealth());
@@ -73,7 +73,7 @@ public class PencilSimTest {
     
     @Test
     public void writerWantsToSharpenPencilToKeepWritingAfterPencilDulls(){
-        pencilsimulator = new PencilSim("Short pencil points", 8);
+        pencilsimulator = new PencilSim("Short pencil points", 8, 20);
         pencilsimulator.write(" write");
         assertEquals("Short pencil points write", pencilsimulator.getPaperText());
         assertEquals(Integer.valueOf(3), pencilsimulator.getPointHealth());
@@ -85,5 +85,10 @@ public class PencilSimTest {
         pencilsimulator.write("poetry");
         assertEquals(Integer.valueOf(2), pencilsimulator.getPointHealth());
         assertEquals("Short pencil points write lit   poetry", pencilsimulator.getPaperText());
+    }
+    
+    @Test
+    public void pencilComesWithACertainLength(){
+        assertEquals(Integer.valueOf(20), pencilsimulator.getPencilLength());     
     }
 }
