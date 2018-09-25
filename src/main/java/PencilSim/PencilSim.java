@@ -67,6 +67,9 @@ public class PencilSim {
     
     public void erase(String textToErase){
         Integer targetPos = paperText.lastIndexOf(textToErase);
+        if(targetPos == -1){
+            return;
+        }
         erasedWordLocs.add(targetPos);
         Integer eraserCost = calculateErasureCost(textToErase);
         Integer eraserBalance = eraserHealth - eraserCost;

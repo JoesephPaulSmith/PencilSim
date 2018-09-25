@@ -175,4 +175,11 @@ public class PencilSimTest {
         assertEquals(true, pencilsimulator.verifyErasedWordPostion(10));
     }
     
+    @Test
+    public void simulatorErasesNothingIfTargetWordDoesNotExist(){
+        pencilsimulator.erase("garbage");
+        assertEquals("This is a test piece of test paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(50), pencilsimulator.getEraserHealth());
+    }
+    
 }
