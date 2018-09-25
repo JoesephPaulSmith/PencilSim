@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// @author jpTheSmithe
+
 package PencilSim;
 
 import java.util.Queue;
 import java.util.LinkedList;
 
-/**
- *
- * @author joexi
- */
 public class PencilSim {
     
     private String paperText;
@@ -21,7 +14,8 @@ public class PencilSim {
     private Integer eraserHealth;    
     private Queue<Integer> erasedWordLocs;
     
-    public PencilSim(String initialText, Integer initPointHealth, Integer initPencilLength, Integer initEraserHealth){
+    public PencilSim(String initialText, Integer initPointHealth, 
+            Integer initPencilLength, Integer initEraserHealth){
         paperText = initialText;
         pointHealth = initPointHealth;
         MAX_POINT_HEALTH = initPointHealth;
@@ -74,7 +68,8 @@ public class PencilSim {
         Integer eraserBalance = eraserHealth - calculateErasureCost(textToErase);
         String tempPaperText = paperText.substring(0, targetPos);
         for(int i = 0; i < textToErase.length(); i++){
-            if(eraserBalance < 0 && !Character.isWhitespace(textToErase.charAt(i))){
+            if(eraserBalance < 0 
+             && !Character.isWhitespace(textToErase.charAt(i))){
                 tempPaperText = tempPaperText + textToErase.charAt(i);
                 eraserBalance = eraserBalance + 1;
             }
@@ -105,7 +100,8 @@ public class PencilSim {
         String replacementText = "";
         Integer insertCost = 0;
         for(int i = 0; i < textToOverwrite.length(); i++){
-            if(!Character.isWhitespace(textToOverwrite.charAt(i)) && insertCost < pointHealth){
+            if(!Character.isWhitespace(textToOverwrite.charAt(i)) 
+             && insertCost < pointHealth){
                 replacementText = replacementText + "@";
                 insertCost = insertCost + charCost(textToInsert.charAt(i));
             }
@@ -157,6 +153,5 @@ public class PencilSim {
     
     public Boolean editingQueueEmpty(){
         return(erasedWordLocs.isEmpty());
-    }
-    
+    }    
 }

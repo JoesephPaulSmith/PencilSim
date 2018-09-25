@@ -257,6 +257,4 @@ public class PencilSimTest {
         assertEquals(pencilsimulator.getPaperText(), "artic@@@ey");       
     }
     
-    
-    
 }
