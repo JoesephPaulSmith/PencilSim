@@ -91,4 +91,13 @@ public class PencilSimTest {
     public void pencilComesWithACertainLength(){
         assertEquals(Integer.valueOf(20), pencilsimulator.getPencilLength());     
     }
+    
+    @Test
+    public void sharpeningPencilReducesLengthByOne(){
+        pencilsimulator.write(" with some text");
+        assertEquals(Integer.valueOf(38), pencilsimulator.getPointHealth());
+        pencilsimulator.sharpen();
+        assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
+        assertEquals(Integer.valueOf(19), pencilsimulator.getPencilLength());     
+    }
 }
