@@ -33,4 +33,11 @@ public class PencilSimTest {
         PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
         assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
     }
+    
+    @Test
+    public void writingSpacesAndNewlinesCostsNothing(){
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
+        pencilsimulator.write(" \n \n \n");
+        assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
+    }
 }
