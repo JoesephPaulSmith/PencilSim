@@ -12,9 +12,11 @@ package PencilSim;
 public class PencilSim {
     
     private String paperText;
+    private Integer pointHealth;
     
-    public PencilSim(String initialText){
+    public PencilSim(String initialText, Integer initPointHealth){
         paperText = initialText;
+        pointHealth = initPointHealth;
     }
     
     public void write(String textToWrite){
@@ -23,6 +25,10 @@ public class PencilSim {
     
     public String getPaperText(){
         return(paperText);
+    }
+    
+    public Integer getPointHealth(){
+        return(pointHealth);
     }
     
 }

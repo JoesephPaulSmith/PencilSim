@@ -17,14 +17,20 @@ import PencilSim.PencilSim;
 public class PencilSimTest {
     @Test
     public void whenSimulatorStartedInitialPaperTextIsAsSpecified(){
-        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper");
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
         assertEquals("This is a test piece of test paper", pencilsimulator.getPaperText());
     }
 
     @Test
     public void writerWantsToUsePencilToWriteAndBetterRememberThoughts(){
-        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper");
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
         pencilsimulator.write(" for testing purposes");
         assertEquals("This is a test piece of test paper for testing purposes", pencilsimulator.getPaperText());
+    }
+    
+    @Test
+    public void pencilProvidedPointValueForDurability(){
+        PencilSim pencilsimulator = new PencilSim("This is a test piece of test paper", 50);
+        assertEquals(Integer.valueOf(50), pencilsimulator.getPointHealth());
     }
 }
