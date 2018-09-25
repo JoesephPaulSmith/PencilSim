@@ -164,4 +164,15 @@ public class PencilSimTest {
         assertEquals(Integer.valueOf(0), pencilsimulator.getEraserHealth());
     }
     
+    @Test
+    public void simulatorTracksErasedWordPositions(){
+        //assertEquals("This is a test piece of test paper", pencilsimulator.getPaperText());
+        pencilsimulator.erase("test");
+        assertEquals("This is a test piece of      paper", pencilsimulator.getPaperText());
+        assertEquals(true, pencilsimulator.verifyErasedWordPostion(24));
+        pencilsimulator.erase("test");
+        assertEquals("This is a      piece of      paper", pencilsimulator.getPaperText());
+        assertEquals(true, pencilsimulator.verifyErasedWordPostion(10));
+    }
+    
 }

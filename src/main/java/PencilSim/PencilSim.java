@@ -5,6 +5,9 @@
  */
 package PencilSim;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 /**
  *
  * @author joexi
@@ -15,7 +18,8 @@ public class PencilSim {
     private Integer pointHealth;
     private Integer MAX_POINT_HEALTH;
     private Integer pencilLength;
-    private Integer eraserHealth;
+    private Integer eraserHealth;    
+    private Queue<Integer> erasedWordLocs;
     
     public PencilSim(String initialText, Integer initPointHealth, Integer initPencilLength, Integer initEraserHealth){
         paperText = initialText;
@@ -23,6 +27,7 @@ public class PencilSim {
         MAX_POINT_HEALTH = initPointHealth;
         pencilLength = initPencilLength;
         eraserHealth = initEraserHealth;
+        erasedWordLocs = new LinkedList<Integer>();
     }
     
     private Integer charCost(char ch){
@@ -62,6 +67,7 @@ public class PencilSim {
     
     public void erase(String textToErase){
         Integer targetPos = paperText.lastIndexOf(textToErase);
+        erasedWordLocs.add(targetPos);
         Integer eraserCost = calculateErasureCost(textToErase);
         Integer eraserBalance = eraserHealth - eraserCost;
         String tempPaperText = paperText.substring(0, targetPos);
@@ -113,6 +119,10 @@ public class PencilSim {
     
     public Integer getEraserHealth(){
         return(eraserHealth);
+    }
+    
+    public Boolean verifyErasedWordPostion(Integer e){
+        return(erasedWordLocs.contains(e));
     }
     
 }
