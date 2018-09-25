@@ -133,4 +133,11 @@ public class PencilSimTest {
     public void erasersHaveALifeOfTheirOwn(){
         assertEquals(Integer.valueOf(50), pencilsimulator.getEraserHealth());
     }
+    
+    @Test
+    public void erasersLoseAPointPerCharacterErased(){
+        pencilsimulator.erase("test");
+        assertEquals("This is a test piece of      paper", pencilsimulator.getPaperText());
+        assertEquals(Integer.valueOf(46), pencilsimulator.getEraserHealth());
+    }
 }

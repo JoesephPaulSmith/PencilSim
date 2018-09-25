@@ -65,6 +65,7 @@ public class PencilSim {
         String tempPaperText = paperText.substring(0, targetPos);
         for(int i = 0; i < textToErase.length(); i++){
             tempPaperText = tempPaperText + " ";
+            eraserHealth = eraserHealth - 1;
         }
         tempPaperText = tempPaperText 
             + paperText.substring(
